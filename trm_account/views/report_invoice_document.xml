@@ -1,0 +1,11 @@
+<!-- views/report_invoice_document.xml -->
+<odoo>
+    <template id="report_trm" inherit_id="account.report_invoice_document">
+        <xpath expr="//div[@id='informations']" position="before">
+           <div class="trm-section">
+                <p>TRM Date: <span t-field="o.trm_date"/></p>
+                <p>TRM Value: <span t-field="o.trm_value"/></p>
+            </div>
+        </xpath>
+    </template>
+</odoo>

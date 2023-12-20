@@ -1,0 +1,22 @@
+<odoo>
+    <data>
+        <!-- Definición de un informe personalizado para el modelo account.move -->
+        <record id="report_invoice_document" model="ir.actions.report">
+
+            <!-- Nombre del informe -->
+            <field name="name">Invoice Document</field>
+
+            <!-- Modelo asociado al informe -->
+            <field name="model">account.move</field>
+
+            <!-- Tipo de informe (en este caso, qweb-pdf) -->
+            <field name="report_type">qweb-pdf</field>
+
+            <!-- Nombre del informe en el sistema -->
+            <field name="report_name">trm_account.report_invoice_document</field>
+
+            <!-- Nombre del archivo del informe en el sistema -->
+            <field name="report_file">trm_account.report_invoice_document</field>
+        </record>
+    </data>
+</odoo>
