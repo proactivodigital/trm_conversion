@@ -1,0 +1,26 @@
+<odoo>
+    <data>
+        <record id="view_subscription_form_inherit" model="ir.ui.view">
+            <field name="name">sale.subscription.form.inherit</field>
+            <field name="model">sale.subscription</field>
+            <field name="inherit_id" ref="sale.view_subscription_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//field[@name='recurring_products']" position="inside">
+                        <style>
+                            .trm-module {
+                                margin-left: auto
+                            }
+                        </style>
+                        <group class="trm-module">
+                            <field name="trm_date"/>
+                            <field name="trm_value"/>
+                            <field name="from_currency_id"/>
+                        </group>
+                    </xpath>
+                    
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
