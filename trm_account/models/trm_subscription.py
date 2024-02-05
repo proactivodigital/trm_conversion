@@ -14,7 +14,7 @@ class TrmSubscription(models.Model):
     @api.depends('trm_date', 'from_currency_id', 'to_currency_id')
     def _compute_trm_value(self):
         for record in self:
-            if record.currency_id and record.from_currency_id and record.to_currency_id != record.from_currency_id:
+            if record.to_currency_id and record.from_currency_id and record.to_currency_id != record.from_currency_id:
                 rate = record.from_currency_id._get_conversion_rate(to_currency=record.to_currency_id,
                                                                     from_currency=record.from_currency_id,
                                                                     date=record.trm_date,
