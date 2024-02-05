@@ -6,7 +6,7 @@ class Trm(models.Model):
     _inherit = 'account.move'
 
     # Definición de campos adicionales
-    trm_date = fields.Date('TRM Date', default=fields.Date.today(), readonly=True, states={'draft': [('readonly', False)]})
+    trm_date = fields.Date('TRM Date', default=fields.Date.today())
     trm_value = fields.Float('TRM Value', readonly=True, compute='_compute_trm_value', store=True)
     currency_id = fields.Many2one('res.currency', string='Main Currency', domain="[('active', '=', True)]")
     from_currency_id = fields.Many2one('res.currency', string='Currency', domain="[('active', '=', True)]")
