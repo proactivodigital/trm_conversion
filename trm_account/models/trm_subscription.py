@@ -7,8 +7,8 @@ class TrmSubscription(models.Model):
 
     trm_date = fields.Date('TRM Date', default=fields.Date.today())
     trm_value = fields.Float('TRM Value', readonly=True, compute='_compute_trm_value', store=True)
-    from_currency_id = fields.Many2one('res.currency', string='Currency', domain="[('active', '=', True)]")
-    to_currency_id = fields.Many2one('res.currency', string='Currency', domain="[('active', '=', True)]")
+    from_currency_id = fields.Many2one('res.currency', string='From Currency', domain="[('active', '=', True)]")
+    to_currency_id = fields.Many2one('res.currency', string='To Currency', domain="[('active', '=', True)]")
 
     # Método para calcular el valor de TRM
     @api.depends('trm_date', 'from_currency_id', 'to_currency_id')
@@ -23,3 +23,18 @@ class TrmSubscription(models.Model):
                 record.trm_value = rate if rate else 0.0
             else:
                 record.trm_value = 0.0
+
+    # Método que se ejecuta al cambiar la moneda de origen
+    @api.onchange('from_currency_id')
+    def _onchange_currency_id(self):
+        self._compute_trm_value()
+
+    # Método que se ejecuta al cambiar la fecha de TRM
+    @api.onchange('trm_date')
+    def _onchange_trm_date(self):
+        self._compute_trm_value()
+        
+    # Método que se ejecuta al cambiar la moneda principal
+    @api.onchange('to_currency_id')
+    def _onchange_currency(self):
+        self._compute_trm_value()

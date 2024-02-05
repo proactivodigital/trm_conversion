@@ -6,7 +6,7 @@
     'author': "Cristian Berrio",
     'category': 'Invoice',
     'version': '1',
-    'depends': ['base', 'account'],
+    'depends': ['base', 'account', 'sale'],
     'data': [
         'views/views.xml',
         'views/view_subscription.xml',
