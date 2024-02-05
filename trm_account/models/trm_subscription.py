@@ -7,4 +7,4 @@ class TrmSubscription(models.Model):
 
     trm_date = fields.Date('TRM Date', default=fields.Date.today(), readonly=True, states={'draft': [('readonly', False)]})
     trm_value = fields.Float('2.00')
-    currency_id = fields.Many2one('res.currency', string='Main Currency', domain="[('active', '=', True)]")
+    from_currency_id = fields.Many2one('res.currency', string='Currency', domain="[('active', '=', True)]")
