@@ -6,36 +6,5 @@ class TrmSubscription(models.Model):
     _inherit = 'sale.order'
 
     trm_date = fields.Date('TRM Date', default=fields.Date.today(), readonly=True, states={'draft': [('readonly', False)]})
-    trm_value = fields.Float('TRM Value', readonly=True, compute='_compute_trm_value', store=True)
+    trm_value = fields.Float('TRM Value', default='0.0')
     from_currency_id = fields.Many2one('res.currency', string='Currency', domain="[('active', '=', True)]")
-
-    # Método para calcular el valor de TRM
-    @api.depends('trm_date', 'from_currency_id', 'currency_id')
-    def _compute_trm_value(self):
-        for record in self:
-            if record.currency_id and record.from_currency_id and record.currency_id != record.from_currency_id:
-                rate = record.from_currency_id._get_conversion_rate(to_currency=record.currency_id,
-                                                                    from_currency=record.from_currency_id,
-                                                                    date=record.trm_date,
-                                                                    company=record.company_id)
-            
-                record.trm_value = rate if rate else 0.0
-            else:
-                record.trm_value = 0.0
-                
-    @api.onchange('from_currency_id')
-    def _onchange_currency_id(self):
-        self._compute_trm_value()
-        self._update_invoice_lines()
-
-    # Método que se ejecuta al cambiar la fecha de TRM
-    @api.onchange('trm_date')
-    def _onchange_trm_date(self):
-        self._compute_trm_value()
-        self._update_invoice_lines()
-
-    # Método que se ejecuta al cambiar la moneda principal
-    @api.onchange('currency_id')
-    def _onchange_currency(self):
-        self._compute_trm_value()
-        self._update_invoice_lines()
