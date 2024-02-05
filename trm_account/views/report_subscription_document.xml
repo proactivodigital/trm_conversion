@@ -1,5 +1,5 @@
 <odoo>
-    <template id="report_subscription" inherit_id="account.subscription.report">
+    <template id="report_subscription" inherit_id="sale.order.form">
         <xpath expr="//div[@id='informations']" position="before">
             <div class="trm-section">
                 <p>TRM Date: <span t-field="o.trm_date"/></p>
