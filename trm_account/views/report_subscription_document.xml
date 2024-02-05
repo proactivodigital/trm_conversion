@@ -1,6 +1,6 @@
 <odoo>
-    <template id="report_subscription" inherit_id="sale_subscription.sale_subscription_order_view_form">
-        <xpath expr="//div[@id='informations']" position="before">
+    <template id="report_subscription" inherit_id="sale_subscription.sale_subscription_primary_form_view">
+        <xpath expr="//field[@name='sale_order_template_id']" position="after">
             <div class="trm-section">
                 <p>TRM Date: <span t-field="o.trm_date"/></p>
                 <p>TRM Value: <span t-field="o.trm_value"/></p>
