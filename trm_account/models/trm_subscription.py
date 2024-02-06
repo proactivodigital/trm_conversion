@@ -38,3 +38,9 @@ class TrmSubscription(models.Model):
     @api.onchange('to_currency_id')
     def _onchange_currency(self):
         self._compute_trm_value()
+
+    def _update_invoice_lines(self):
+        for line in self.invoice_line_ids:
+            if self.trm_value != 0.0:
+                line.price_unit = line.price_unit * self.trm_value
+                line.price_subtotal = line.price_unit * line.quantity * (1 - line.discount / 100.0)
