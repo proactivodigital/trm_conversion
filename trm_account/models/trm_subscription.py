@@ -31,7 +31,7 @@ class TrmSubscription(models.Model):
         self._update_invoice_lines()
 
     def _update_invoice_lines(self):
-        for line in self.invoice_line_ids:
-            if self.trm_value != 0.0:
+        if self.trm_value != 0.0:
+            for line in self.order_lines:
                 line.price_unit = line.price_unit * self.trm_value
-                line.price_subtotal = line.price_unit * line.quantity * (1 - line.discount / 100.0)
+                line.price_subtotal = line.price_subtotal * line.trm_value
