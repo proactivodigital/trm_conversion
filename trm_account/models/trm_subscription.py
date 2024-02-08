@@ -34,4 +34,4 @@ class TrmSubscription(models.Model):
         if self.trm_value != 0.0:
             for line in self.order_line:
                 line.price_unit = line.price_unit * self.trm_value
-                line.price_subtotal = line.price_subtotal * line.trm_value
+                line.price_subtotal = line.price_subtotal * self.trm_value
