@@ -23,21 +23,12 @@ class TrmSubscription(models.Model):
                 record.trm_value = rate if rate else 0.0
             else:
                 record.trm_value = 0.0
-
-    # Método que se ejecuta al cambiar la moneda de origen
-    @api.onchange('from_currency_id')
-    def _onchange_currency_id(self):
-        self._compute_trm_value()
-
-    # Método que se ejecuta al cambiar la fecha de TRM
-    @api.onchange('trm_date')
-    def _onchange_trm_date(self):
-        self._compute_trm_value()
         
     # Método que se ejecuta al cambiar la moneda principal
     @api.onchange('to_currency_id')
     def _onchange_currency(self):
         self._compute_trm_value()
+        self._update_invoice_lines()
 
     def _update_invoice_lines(self):
         for line in self.invoice_line_ids:
