@@ -5,7 +5,7 @@
     """,
     'author': "Cristian Berrio",
     'category': 'Invoice',
-    'version': '17.0.1',
+    'version': '17.0.21.12.050100',
     'depends': ['base', 'account', 'sale'],
     'data': [
         'views/views.xml',
