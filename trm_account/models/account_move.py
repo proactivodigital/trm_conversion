@@ -1,6 +1,6 @@
-# Importa las clases necesarias desde el módulo 'odoo'
+# Import necessary classes from the 'odoo' module
 from odoo import models, fields
 
-# Define tu modelo 'AccountMove' que hereda del modelo 'account.move'
+# Define your 'AccountMove' model which inherits from the 'account.move' model
 class AccountMove(models.Model):
     _inherit = 'account.move'

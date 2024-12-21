@@ -1,24 +1,26 @@
 <odoo>
   <record id="view_invoice_form_inherit" model="ir.ui.view">
-    <field name="name">account.move.form.inherit</field>
-    <field name="model">account.move</field>
-    <field name="inherit_id" ref="account.view_move_form"/>
+    <field name="name">account.move.form.inherit</field>  <!-- Name of the new view -->
+    <field name="model">account.move</field>  <!-- The model being inherited -->
+    <field name="inherit_id" ref="account.view_move_form"/>  <!-- The ID of the original view being inherited -->
     <field name="arch" type="xml">
-     <data>
-      <xpath expr="//group" position="inside">
-        <style>
-          .trm-module {
-            margin-left: auto
-          }
-        </style>
-        <group class="trm-module">
-          <field name="trm_date"/>
-          <field name="trm_value"/>
-          <field name="from_currency_id"/>
-        </group>
-      </xpath>
-        
-     </data>
+      <data>
+        <xpath expr="//group" position="inside">
+          <!-- Custom styling for the new group -->
+          <style>
+            .trm-module {
+              margin-left: auto;
+            }
+          </style>
+          <!-- New group for TRM fields -->
+          <group class="trm-module">
+            <!-- Add TRM-related fields here -->
+            <field name="trm_date"/>  <!-- Date field for TRM -->
+            <field name="trm_value"/>  <!-- TRM value field -->
+            <field name="from_currency_id"/>  <!-- Currency field -->
+          </group>
+        </xpath>
+      </data>
     </field>
   </record>
 </odoo>
