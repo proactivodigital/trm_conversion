@@ -8,7 +8,7 @@
     """,
     'author': "Cristian Berrio",  # The name of the author of the module.
     'category': 'Invoice',  # The category of the module in Odoo. It is classified under 'Invoice' indicating it is related to invoicing.
-    'version': '17.0.22.08.031410',  # Version of the module. This is the version number used to manage updates.
+    'version': '18.0',  # Version of the module. This is the version number used to manage updates.
     'depends': ['base', 'account', 'sale'],  # Module dependencies. This module requires the 'base', 'account', and 'sale' modules to be installed.
     'data': [
         'views/views.xml',  # Files for the user interface views.
